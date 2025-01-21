@@ -8,7 +8,7 @@ const AddTask = ({ onAdd }) => {
         e.preventDefault();
         if (!title) return alert('Task title is required');
         try {
-            const response = await axios.post('http://localhost:3000/tasks', { title });
+            const response = await axios.post('http://localhost:5000/tasks', { title });
             onAdd(response.data);
             setTitle('');
         } catch (error) {

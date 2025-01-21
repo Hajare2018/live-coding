@@ -6,15 +6,16 @@ import TaskList from './components/TaskList';
 const App = () => {
     const [tasks, setTasks] = useState([]);
 
+    const fetchTasks = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/tasks');
+            setTasks(response.data);
+        } catch (error) {
+            alert('Failed to fetch tasks');
+        }
+    };
+
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/tasks');
-                setTasks(response.data);
-            } catch (error) {
-                alert('Failed to fetch tasks');
-            }
-        };
         fetchTasks();
     }, []);
 
