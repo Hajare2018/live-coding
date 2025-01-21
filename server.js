@@ -53,7 +53,7 @@ app.get("/tasks", (req, res) => {
 
 app.patch("/tasks/:id", (req, res) => {
   const { id } = req.params;
-  const { title, status } = req.body;
+  const { status } = req.body;
 
   const tasks = readTasks();
   const task = tasks.find((task) => task.id === id);
@@ -62,7 +62,6 @@ app.patch("/tasks/:id", (req, res) => {
     return res.status(404).json({ error: "Task not found" });
   }
   task.status = status;
-  task.title = title
   writeTasks(tasks);
   res.json(task);
 });
