@@ -33,9 +33,10 @@ const writeTasks = (tasks) => {
 };
 
 app.post("/tasks", (req, res) => {
-  const { title, status } = req.body;
+  const title = req.body.title;
+  const status = req.body.status === true ? true : false;
+
   const newTasks = { id: uuidv4(), title: title, status: status };
-  console.log(newTasks);
   const tasks = readTasks();
   if (!Array.isArray(tasks)) {
     return res.status(500).json({ error: 'Invalid tasks data' });
